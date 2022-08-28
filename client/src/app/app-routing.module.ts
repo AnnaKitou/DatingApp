@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'members/:id', component: MemberDetailComponent },
   { path: 'lists', component: ListsComponent },
   { path: 'messages', component: MessagesComponent },
-  { path: '**', component: HomeComponent },
+  { path: '**', component: HomeComponent,pathMatch:'full'},
 ];
 
 @NgModule({
