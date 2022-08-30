@@ -27,8 +27,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                   if (error.error.errors[key]) {
                     modalStateErrors.push(error.error.errors[key])
                   }
-                  throw modalStateErrors;
                 }
+                throw modalStateErrors;
               }
               else {
                 this.toastr.error(error.statusText, error.status);
