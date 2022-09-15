@@ -46,7 +46,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor, multi:true},
