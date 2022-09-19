@@ -49,7 +49,7 @@ namespace API.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDTO memberUpdateDTO)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername(););
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
             _mapper.Map(memberUpdateDTO, user);
 
             _userRepository.Update(user);
