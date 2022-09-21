@@ -2,7 +2,7 @@
     <div class="col-4">Your Profile</div>
     <div class="col-8">
         <div class="alert alert-info" *ngIf="editForm.dirty">
-           <strong>Information:</strong>You have made changes. Any unsaved changes will be lost!
+            <strong>Information:</strong>You have made changes. Any unsaved changes will be lost!
         </div>
     </div>
     <div class="col-4">
@@ -28,7 +28,8 @@
                 <p>{{member.created}}</p>
             </div>
             <div class="card-footer">
-                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save Changes</button>
+                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save
+                    Changes</button>
             </div>
         </div>
     </div>
@@ -38,9 +39,11 @@
             <tab heading="About {{member.KnownAs}}">
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
                     <h4>Description</h4>
-                    <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
+                    <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction"
+                        rows="6"></textarea>
                     <h4 class="mt-2">Looking For</h4>
-                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
+                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor"
+                        rows="6"></textarea>
                     <h4 class="mt-2">Interests</h4>
                     <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
                     <h4 class="mt-2">Location Details: </h4>
@@ -53,7 +56,7 @@
                 </form>
             </tab>
             <tab heading="Edit Photos">
-                <h4>Photo Edit Will go here</h4>
+                <app-photo-editor [member]="member"></app-photo-editor>
             </tab>
         </tabset>
     </div>
