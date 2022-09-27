@@ -1,19 +1,15 @@
 <form [formGroup]='registerForm' (ngSubmit)="register()" autocomplete="off">
     <h2 class="text-center text-primary">Sign Up</h2>
-    <div class="form-group">
-        <input type="text" class="form-control" formControlName='username' placeholder="Username">
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" formControlName='password' placeholder="Password">
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" formControlName='confirmPassword' placeholder="Confirm Password">
-    </div>
+  <hr>
+  <app-text-input [formControl]='registerForm.controls["username"]' 
+  [label]='"Username"'></app-text-input>
+  <app-text-input [formControl]='registerForm.controls["password"]' 
+  [label]='"Password"' [type]='"password"'></app-text-input>
+  <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"confirmPassword"' 
+  [type]='"password"'></app-text-input>
+
     <div class="form-group text-center">
         <button class="btn btn-success mr-2" type="submit">Register</button>
         <button class="btn btn-danger mr-2" type="button" (click)="cancel()">Cancel</button>
     </div>
 </form>
-
-<p>Form value:{{registerForm.value | json}}</p>
-<p>Form status:{{registerForm.status | json}}</p>
