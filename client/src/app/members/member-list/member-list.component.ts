@@ -30,4 +30,8 @@ export class MemberListComponent implements OnInit {
     })
   }
 
+  pageChanged(event:any){
+    this.pageNumber=event.page;
+    this.loadMembers();
+  }
 }
