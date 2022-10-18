@@ -31,15 +31,11 @@
             <td>{{message.content}}</td>
             <td>
                 <div *ngIf="container==='Outbox'">
-                    <img class="img-circle rounder-circle mr-2" 
-                    scr="{{message.recipientPhotoUrl}}" 
-                    alt="{{message.recipientUsername}}">
+                    <img class="img-circle rounder-circle mr-2" src="{{message.recipientPhotoUrl||'./assets/user.png'}}" alt="{{message.recipientUsername}}">
                     <strong>{{message.recipientUsername|titlecase}}</strong>
                 </div>
                 <div *ngIf="container!=='Outbox'">
-                    <img class="img-circle rounder-circle mr-2" 
-                    scr="{{message.senderPhotoUrl}}" 
-                    alt="{{message.senderUsername}}">
+                    <img class="img-circle rounder-circle mr-2" src="{{message.senderPhotoUrl||'./assets/user.png'}}" alt="{{message.senderUsername}}">
                     <strong>{{message.senderUsername|titlecase}}</strong>
                 </div>
             </td>
@@ -54,5 +50,6 @@
     <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
         [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
         nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
     </pagination>
 </div>
