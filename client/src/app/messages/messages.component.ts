@@ -10,7 +10,7 @@ import { MessageService } from '../_services/message.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  messages: Message[];
+  messages: Message[]=[];
   pagination: Pagination;
   container = 'Unread';
   pageNumber = 1;
@@ -26,7 +26,6 @@ export class MessagesComponent implements OnInit {
   loadMessages() {
     this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe(response => {
       this.messages = response.result;
-      console.log(this.messages);
       this.pagination = response.pagination;
     })
   }

@@ -10,7 +10,7 @@
         </button>
         <button class="btn btn-primary" btnRadio='Outbox' [(ngModel)]="container" 
         (click)="loadMessages()">
-            <i class="fa fa-envelope-plain"></i>Outbox
+            <i class="fa fa-paper-plane"></i>Outbox
         </button>
     </div>
 </div>
@@ -27,7 +27,8 @@
         </tr>
         <tr *ngFor="let message of messages" routerLink='{{container==="Outbox" 
          ? "/members/"+ message.recipientUsername 
-         : ".members/"+ message.senderUsername}}'>
+         : ".members/"+ message.senderUsername}}'
+         [queryParams]="{tab:3}">
             <td>{{message.content}}</td>
             <td>
                 <div *ngIf="container==='Outbox'">
