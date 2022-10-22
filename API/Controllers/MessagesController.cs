@@ -37,7 +37,8 @@ namespace API.Controllers
                 return BadRequest("You cannot send messages to yourself");
 
             var sender = await _userRepository.GetUserByUsernameAsync(username);
-            var recipient = await _userRepository.GetUserByUsernameAsync(createMessageDto.RecipientUsername);
+            var recipient = await _userRepository.GetUserByUsernameAsync(
+                createMessageDto.RecipientUsername);
 
             if (recipient == null) return NotFound();
 
@@ -51,7 +52,8 @@ namespace API.Controllers
             };
 
             _messageRepository.AddMessage(message);
-            if (await _messageRepository.SaveAllAsync()) return Ok(_mapper.Map<MessageDto>(message));
+            if (await _messageRepository.SaveAllAsync()) return Ok(_mapper
+            .Map<MessageDto>(message));
 
             return BadRequest("Failed to send message");
         }
@@ -73,7 +75,7 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(string username)
         {
             var currentUsername = User.GetUsername();
-            return Ok(await _messageRepository.GetMessagesThread(currentUsername, username));
+            return Ok(await _messageRepository.GetMessageThread(currentUsername, username));
         }
     }
 }

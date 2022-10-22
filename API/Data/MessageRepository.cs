@@ -55,7 +55,7 @@ namespace API.Data
             messageParams.PageSize);
         }
 
-        public async Task<IEnumerable<MessageDto>> GetMessagesThread(string currentUsername,
+        public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername,
         string recipientUsername)
         {
             var messages = await _context.Messages
