@@ -29,14 +29,15 @@ namespace API.Controllers
             _mapper = mapper;
             _photoService = photoService;
         }
-
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var user=await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
             userParams.CurrentUserName = User.GetUsername();
-            if (string.IsNullOrEmpty(userParams.Gender)){
-                userParams.Gender=user.Gender=="male"?"female":"male";
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = user.Gender == "male" ? "female" : "male";
             }
 
 
