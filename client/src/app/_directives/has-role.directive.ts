@@ -18,13 +18,16 @@ export class HasRoleDirective implements OnInit {
     })
   }
   ngOnInit(): void {
-    if (this.user?.roles || this.user == null) {
+    if (!this.user?.roles || this.user == null) {
       this.ViewContainerRef.clear();
       return;
     }
 
     if (this.user?.roles.some(r => this.appHasRole.includes(r))) {
       this.ViewContainerRef.createEmbeddedView(this.templateRef);
+    }
+    else{
+      this.ViewContainerRef.clear();
     }
   }
 
