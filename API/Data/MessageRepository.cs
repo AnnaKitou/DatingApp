@@ -22,6 +22,12 @@ namespace API.Data
             _mapper = mapper;
             _context = context;
         }
+
+        public void AddGroup(Group group)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddMessage(Message message)
         {
             _context.Messages.Add(message);
@@ -32,13 +38,23 @@ namespace API.Data
             _context.Messages.Remove(message);
         }
 
+        public Task<Connection> GetConnection(string connectionId)
+        {
+            throw new NotImplementedException();
+        }
+        public Task<Group> GetMessageGroup(string groupName)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Message> GetMessage(int id)
         {
             return await _context.Messages
-            .Include(u=>u.Sender)
-            .Include(u=>u.Recipient)
-            .SingleOrDefaultAsync(x=>x.Id==id);
+            .Include(u => u.Sender)
+            .Include(u => u.Recipient)
+            .SingleOrDefaultAsync(x => x.Id == id);
         }
+
 
         public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
         {
@@ -48,11 +64,11 @@ namespace API.Data
             query = messageParams.Container switch
             {
                 "Inbox" => query.Where(u => u.Recipient.UserName == messageParams.Username
-                && u.RecipientDeleted==false),
+                && u.RecipientDeleted == false),
                 "Outbox" => query.Where(u => u.Sender.UserName == messageParams.Username
-                && u.SenderDeleted==false),
+                && u.SenderDeleted == false),
                 _ => query.Where(u => u.Recipient.UserName == messageParams.Username
-                && u.DateRead == null &&  u.RecipientDeleted==false)
+                && u.DateRead == null && u.RecipientDeleted == false)
             };
             var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
 
@@ -67,10 +83,10 @@ namespace API.Data
             .Include(u => u.Sender).ThenInclude(p => p.Photos)
             .Include(u => u.Recipient).ThenInclude(p => p.Photos)
             .Where(m => m.Recipient.UserName == currentUsername
-            && m.RecipientDeleted==false
+            && m.RecipientDeleted == false
                   && m.Sender.UserName == recipientUsername
                   || m.Recipient.UserName == recipientUsername
-                  || m.Sender.UserName == currentUsername && m.SenderDeleted==false
+                  || m.Sender.UserName == currentUsername && m.SenderDeleted == false
                   )
             .OrderBy(m => m.MessageSent)
             .ToListAsync();
@@ -88,6 +104,11 @@ namespace API.Data
             }
 
             return _mapper.Map<IEnumerable<MessageDto>>(messages);
+        }
+
+        public void RemoveConnection(Connection connection)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<bool> SaveAllAsync()
