@@ -25,7 +25,7 @@ namespace API.Data
 
         public void AddGroup(Group group)
         {
-            throw new NotImplementedException();
+            _context.Groups.Add(group);
         }
 
         public void AddMessage(Message message)
@@ -38,13 +38,15 @@ namespace API.Data
             _context.Messages.Remove(message);
         }
 
-        public Task<Connection> GetConnection(string connectionId)
+        public async Task<Connection> GetConnection(string connectionId)
         {
-            throw new NotImplementedException();
+           return await _context.Connections.FindAsync(connectionId);
         }
-        public Task<Group> GetMessageGroup(string groupName)
+        public async Task<Group> GetMessageGroup(string groupName)
         {
-            throw new NotImplementedException();
+         return await _context.Groups
+         .Include(x=>x.Connections)
+         .FirstOrDefaultAsync(x=>x.Name==groupName);
         }
 
         public async Task<Message> GetMessage(int id)
@@ -108,7 +110,7 @@ namespace API.Data
 
         public void RemoveConnection(Connection connection)
         {
-            throw new NotImplementedException();
+            _context.Connections.Remove(connection);
         }
 
         public async Task<bool> SaveAllAsync()
