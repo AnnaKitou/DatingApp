@@ -20,6 +20,7 @@ constructor(private accountService:AccountService, private toastr:ToastrService)
           return true;
         }
         this.toastr.error('You cannot enter this area');
+        return false;
       })
     );
   }
