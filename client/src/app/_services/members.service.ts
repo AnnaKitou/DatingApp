@@ -23,7 +23,7 @@ export class MembersService {
 
 
   constructor(private http: HttpClient, private accountService: AccountService) {
-    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {4
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.userParams = new UserParams(user);
    })
@@ -79,7 +79,7 @@ export class MembersService {
 }
 
 updateMember(member: Member) {
-  return this.http.put(this.baseUrl + 'users', member).pipe(
+  return this.http.put(this.baseUrl + 'users/', member).pipe(
     map(() =>{
       const index = this.members.indexOf(member);
         this.members[index] = member;
@@ -103,7 +103,7 @@ deletePhoto(photoId: number) {
   getLikes(predicate: string, pageNumber, pageSize) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('predicate', predicate);
-    return getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes', params, this.http);
+    return getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes/', params, this.http);
   }
 
 }

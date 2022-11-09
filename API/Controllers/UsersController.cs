@@ -44,7 +44,7 @@ namespace API.Controllers
 
         }
 
-        [HttpGet("{userName}", Name = "GetUser")]
+        [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDTO>> GetUser(string userName)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(userName);
@@ -91,7 +91,7 @@ namespace API.Controllers
 
             if (await _unitOfWork.Complete())
             {
-                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<PhotoDTO>(photo));
+                return CreatedAtRoute("GetUser", new { username = user.UserName}, _mapper.Map<PhotoDTO>(photo));
             }
 
 
