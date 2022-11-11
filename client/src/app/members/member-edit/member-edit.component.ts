@@ -31,10 +31,16 @@ export class MemberEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    console.log(this.user);
     this.loadMember();
   }
 
+  
+
   loadMember() {
+
+    console.log(this.user);
     this.memberService.getMember(this.user.username).subscribe(member => {
       this.member = member;
     })
